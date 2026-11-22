@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Khelearn | Play, Learn, Grow.</title>
+  <meta name="description" content="Khelearn is a playful world where games become a pathway to knowledge, creativity and personal development.">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#7157e8">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Khelearn">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <header class="navbar">
+    <a href="#home" class="logo">
+      <span class="logo-mark">🧠</span>
+      <span class="brand-name">Khelearn</span>
+      <span class="logo-tagline">Play, Learn, Grow.</span>
+    </a>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#games">Games</a>
+      <button class="nav-feature-trigger"
+        type="button"
+        data-textbook-coming-soon
+        aria-haspopup="dialog"
+        aria-controls="textbookComingSoon">
+        Textbook Games
+      </button>
+      <a href="#rewards">Rewards</a>
+      <a href="#feedback">Feedback</a>
+      <a href="#about">About</a>
+    </nav>
+
+    <a href="#games" class="nav-button">
+      Let's play <span>↗</span>
+    </a>
+
+    <button class="menu-toggle"
+      id="menuToggle"
+      aria-label="Toggle navigation"
+      aria-expanded="false">☰</button>
+  </header>
+
+  <main>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+
+      <div class="hero-content">
+
+        <span class="welcome-tag">
+          <span class="tag-dot"></span>
+          PLAY, LEARN, GROW.
+        </span>
+
+        <h1>
+          Big ideas begin<br>
+          with a <span>little play.</span>
+        </h1>
+
+        <p>
+          Welcome to Khelearn — where play becomes a powerful
+          pathway to knowledge, creativity and personal development.
+          Explore, challenge yourself and grow through fun.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#games" class="primary-button">
+            Explore games <span>→</span>
+          </a>
+
+          <a href="#about" class="secondary-button">
+            Discover Khelearn
+          </a>
+
+          <button class="secondary-button install-button"
+            id="installButton"
+            type="button"
+            hidden>
+            Install app
+          </button>
+        </div>
+
+        <div class="hero-features">
+          <span>✦ Playful learning</span>
+          <span>✦ Creative thinking</span>
+          <span>✦ Personal growth</span>
+        </div>
+
+      </div>
+
+      <!-- HERO ILLUSTRATION -->
+      <div class="hero-illustration"
+        aria-label="Khelearn playful brain illustration">
+
+        <div class="orbit orbit-one"></div>
+        <div class="orbit orbit-two"></div>
+
+        <div class="mascot-plate">
+          <div class="brain-mascot">🧠</div>
+        </div>
+
+        <div class="sun">☀️</div>
+
+        <div class="floating-star star-one">⭐</div>
+        <div class="floating-star star-two">✨</div>
+
+        <div class="floating-cloud cloud-one">☁️</div>
+        <div class="floating-cloud cloud-two">☁️</div>
+
+        <div class="mascot-message">
+          Hey, curious thinker! 👋
+        </div>
+
+        <div class="hero-sticker sticker-top">THINK!</div>
+        <div class="hero-sticker sticker-bottom">
+          PLAY • LEARN • GROW
+        </div>
+
+      </div>
+
+      <div class="hero-bottom-note">
+        <span>↓</span> Your next adventure awaits
+      </div>
+
+    </section>
+
+    <!-- GAMES SECTION -->
+    <section class="games-section" id="games">
+
+      <div class="section-heading">
+        <span class="section-tag">THE PLAY ZONE</span>
+
+        <h2>Pick your <span>adventure.</span></h2>
+
+        <p>
+          Five little games. Plenty of ways to think,
+          explore and have fun.
+        </p>
+      </div>
+
+      <div class="games-grid">
+
+        <button class="game-card memory"
+          data-game="Memory Magic">
+
+          <span class="card-top">
+            <span class="game-icon">🧩</span>
+            <span class="card-number">01</span>
+          </span>
+
+          <img class="game-art" src="game-memory.png" alt="" aria-hidden="true">
+
+          <h3>Memory Magic</h3>
+
+          <p>
+            Flip, remember and match the picture pairs.
+          </p>
+
+          <span class="play-label">
+            Play game <span>↗</span>
+          </span>
+
+        </button>
+
+        <button class="game-card math"
+          data-game="Math Adventure">
+
+          <span class="card-top">
+            <span class="game-icon">🔢</span>
+            <span class="card-number">02</span>
+          </span>
+
+          <img class="game-art" src="game-math.png" alt="" aria-hidden="true">
+
+          <h3>Math Adventure</h3>
+
+          <p>
+            Count, add and explore the world of numbers.
+          </p>
+
+          <span class="play-label">
+            Play game <span>↗</span>
+          </span>
+
+        </button>
+
+        <button class="game-card logic"
+          data-game="Logic Land">
+
+          <span class="card-top">
+            <span class="game-icon">💡</span>
+            <span class="card-number">03</span>
+          </span>
+
+          <img class="game-art" src="game-logic.png" alt="" aria-hidden="true">
+
+          <h3>Logic Land</h3>
+
+          <p>
+            Spot patterns and solve clever little puzzles.
+          </p>
+
+          <span class="play-label">
+            Play game <span>↗</span>
+          </span>
+
+        </button>
+
+        <button class="game-card words"
+          data-game="Word Wonder">
+
+          <span class="card-top">
+            <span class="game-icon">🔤</span>
+            <span class="card-number">04</span>
+          </span>
+
+          <img class="game-art" src="game-words.png" alt="" aria-hidden="true">
+
+          <h3>Word Wonder</h3>
+
+          <p>
+            Play with letters and discover new words.
+          </p>
+
+          <span class="play-label">
+            Play game <span>↗</span>
+          </span>
+
+        </button>
+
+        <button class="game-card focus"
+          data-game="Focus Finder">
+
+          <span class="card-top">
+            <span class="game-icon">👀</span>
+            <span class="card-number">05</span>
+          </span>
+
+          <img class="game-art" src="game-focus.png" alt="" aria-hidden="true">
+
+          <h3>Focus Finder</h3>
+
+          <p>
+            Look closely, notice details and find things.
+          </p>
+
+          <span class="play-label">
+            Play game <span>↗</span>
+          </span>
+
+        </button>
+
+      </div>
+
+      <button class="textbook-feature-card"
+        type="button"
+        data-textbook-coming-soon
+        aria-haspopup="dialog"
+        aria-controls="textbookComingSoon">
+        <span class="textbook-feature-label">COMING SOON</span>
+        <h3>Turn Textbooks into Games</h3>
+        <p>Turn school lessons into fun learning games. Upload textbook lessons and transform learning into play.</p>
+        <span class="textbook-feature-cta">
+          Explore Feature <span aria-hidden="true">→</span>
+        </span>
+        <span class="textbook-feature-art" aria-hidden="true">
+          <span class="textbook-feature-book">📚</span>
+          <span class="textbook-feature-puzzle">🧩</span>
+          <span class="textbook-feature-sparkle">✦</span>
+        </span>
+      </button>
+
+    </section>
+
+    <!-- PLAY MODES -->
+    <section class="modes-section">
+
+      <div class="section-heading">
+
+        <span class="section-tag">YOUR WAY TO PLAY</span>
+
+        <h2>Solo or <span>side by side?</span></h2>
+
+        <p>
+          Choose how you want to begin your adventure.
+        </p>
+
+      </div>
+
+      <div class="modes-grid">
+
+        <button class="mode-card selected"
+          data-mode="Individual">
+
+          <span class="mode-icon">🧒</span>
+
+          <h3>Play Alone</h3>
+
+          <p>
+            Take your time, try new things and play your way.
+          </p>
+
+          <span class="mode-status">
+            Selected ✓
+          </span>
+
+        </button>
+
+        <button class="mode-card"
+          data-mode="Competition">
+
+          <span class="mode-icon">👫</span>
+
+          <h3>Play Together</h3>
+
+          <p>
+            Take turns, cheer each other on and play together.
+          </p>
+
+          <span class="mode-status">
+            Choose mode
+          </span>
+
+        </button>
+
+      </div>
+
+      <div class="start-area">
+
+        <p id="selectionMessage">
+          Ready for your individual adventure?
+        </p>
+
+        <button class="primary-button start-button"
+          id="startButton">
+
+          Start my adventure <span>→</span>
+
+        </button>
+
+      </div>
+
+    </section>
+
+    <!-- REWARDS -->
+    <section class="rewards-section" id="rewards">
+
+      <div class="rewards-content">
+
+        <span class="section-tag">
+          PROGRESS, NOT PERFECTION
+        </span>
+
+        <h2>
+          Every try is a <span>win.</span>
+        </h2>
+
+        <p>
+          Celebrate the effort it takes to try something new.
+          Every challenge is a chance to learn, practise
+          and feel proud.
+        </p>
+
+        <div class="reward-items">
+
+          <div>
+            <span class="reward-emoji">⭐</span>
+            <span>Stars</span>
+          </div>
+
+          <div>
+            <span class="reward-emoji">🏅</span>
+            <span>Badges</span>
+          </div>
+
+          <div>
+            <span class="reward-emoji">🎁</span>
+            <span>Surprises</span>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="reward-illustration">
+
+        <div class="trophy-circle">🏆</div>
+
+        <div class="reward-caption">
+          YOU DID IT!
+        </div>
+
+        <span class="reward-spark spark-a">✦</span>
+        <span class="reward-spark spark-b">✧</span>
+
+      </div>
+
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about-section" id="about">
+
+      <span class="section-tag">
+        MEET KHELEARN
+      </span>
+
+      <h2>
+        A world where learning
+        <span>feels like play.</span>
+      </h2>
+
+      <p>
+        Khelearn represents the idea that play can become
+        a powerful pathway to knowledge, creativity and
+        personal development. Through interactive games
+        and playful challenges, Khelearn encourages
+        curiosity, thinking, learning and growth.
+      </p>
+
+      <div class="about-features">
+
+        <div>🎨 Creative discovery</div>
+        <div>🧠 Curious thinking</div>
+        <div>🌈 Encouraging play</div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- FEEDBACK & RATING SECTION -->
+<section class="feedback-section" id="feedback">
+
+  <div class="feedback-container">
+
+    <span class="section-tag">YOUR VOICE MATTERS</span>
+
+    <h2>How was your <span>Khelearn experience?</span></h2>
+
+    <p class="feedback-intro">
+      Your feedback helps us make learning more fun,
+      engaging and meaningful. We'd love to hear from you!
+    </p>
+
+    <form id="feedbackForm">
+
+      <div class="rating-area">
+
+        <p class="rating-question">
+          How would you rate your experience?
+        </p>
+
+        <div class="star-rating" role="group"
+          aria-label="Rate your experience from 1 to 5 stars">
+
+          <button type="button" class="rating-star"
+            data-rating="1" aria-label="1 star">★</button>
+
+          <button type="button" class="rating-star"
+            data-rating="2" aria-label="2 stars">★</button>
+
+          <button type="button" class="rating-star"
+            data-rating="3" aria-label="3 stars">★</button>
+
+          <button type="button" class="rating-star"
+            data-rating="4" aria-label="4 stars">★</button>
+
+          <button type="button" class="rating-star"
+            data-rating="5" aria-label="5 stars">★</button>
+
+        </div>
+
+        <p id="ratingText">Select your rating</p>
+
+      </div>
+
+      <div class="feedback-field">
+
+        <label for="feedbackMessage">
+          Share your thoughts
+        </label>
+
+        <textarea
+          id="feedbackMessage"
+          placeholder="What did you enjoy? What can we improve?"
+          rows="5"
+          maxlength="1000"></textarea>
+
+      </div>
+
+      <button type="submit" class="feedback-submit">
+        Submit Feedback →
+      </button>
+
+      <p id="feedbackSuccess" class="feedback-success"
+        role="status" aria-live="polite"></p>
+
+    </form>
+
+  </div>
+
+</section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+
+    <a href="#home" class="logo footer-logo">
+      <span class="logo-mark">🧠</span>
+      <span class="brand-name">Khelearn</span>
+      <span class="logo-tagline">Play, Learn, Grow.</span>
+    </a>
+
+    <p>
+      Play, Learn, Grow. A little play can lead to big discoveries.
+    </p>
+
+    <p class="copyright">
+      © 2026 Khelearn. Play, Learn, Grow.
+    </p>
+
+  </footer>
+
+  <!-- TOAST -->
+  <div class="toast"
+    id="toast"
+    role="status"
+    aria-live="polite">
+  </div>
+
+  <!-- PLAY MODE MODAL -->
+  <div id="playModeModal"
+    class="play-mode-modal"
+    hidden>
+
+    <div class="play-mode-box">
+
+      <button id="closePlayMode"
+        class="close-mode"
+        aria-label="Close">
+        ✕
+      </button>
+
+      <h2>🎮 Choose your play mode</h2>
+
+      <p>How would you like to play?</p>
+
+      <div class="play-mode-options">
+
+        <button id="playAlone"
+          class="play-option alone">
+
+          🧒
+
+          <strong>Play Alone</strong>
+
+          <span>Enjoy your own adventure!</span>
+
+        </button>
+
+        <button id="playTogether"
+          class="play-option together">
+
+          👫
+
+          <strong>Play Together</strong>
+
+          <span>Have fun with a friend!</span>
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <dialog id="textbookComingSoon"
+    class="textbook-coming-soon"
+    aria-labelledby="textbookComingSoonTitle"
+    aria-describedby="textbookComingSoonMessage">
+
+    <div class="play-mode-box textbook-coming-soon-box">
+      <div class="textbook-coming-soon-icon" aria-hidden="true">📚</div>
+
+      <h2 id="textbookComingSoonTitle">We're working on something exciting!</h2>
+
+      <div id="textbookComingSoonMessage">
+        <p>
+          The Textbook-to-Games feature is currently under development. Soon,
+          parents will be able to transform their children's textbook lessons
+          into interactive learning games.
+        </p>
+        <p>Stay tuned!</p>
+      </div>
+
+      <button class="primary-button" id="closeTextbookComingSoon" type="button">
+        Got it
+      </button>
+    </div>
+
+  </dialog>
+
+  <script src="script.js"></script>
+
+</body>
+</html>

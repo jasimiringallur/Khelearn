@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khelearn Together</title>
+    <link rel="stylesheet" href="together.css">
+</head>
+
+<body>
+
+    <div class="background-effects">
+        <div class="bubble bubble1"></div>
+        <div class="bubble bubble2"></div>
+        <div class="bubble bubble3"></div>
+        <div class="bubble bubble4"></div>
+    </div>
+
+    <header class="topbar">
+        <a href="index.html" class="logo">🧠 Khelearn</a>
+        <a href="index.html" class="back-button">← Home</a>
+    </header>
+
+    <main class="main-container">
+
+        <section class="hero">
+            <div class="hero-tag">🎮 MULTIPLAYER FUN</div>
+            <h1>Play Together.<br><span>Grow Together!</span></h1>
+            <p>Challenge your friend, test your brain and discover who is the Khelearn champion!</p>
+            <div class="hero-emoji">👦🏻 🤝 👧🏻</div>
+        </section>
+
+        <!-- SETUP SCREEN -->
+        <section id="setupScreen" class="setup-section">
+
+            <div class="section-heading">
+                <h2>👥 Meet the Players</h2>
+                <p>Enter the names of both players.</p>
+            </div>
+
+            <div class="player-inputs">
+
+                <div class="player-card player-one">
+                    <div class="player-avatar">🧑🏻‍🚀</div>
+                    <h3>Player One</h3>
+                    <input type="text" id="playerOne" placeholder="Enter first player's name" maxlength="16">
+                </div>
+
+                <div class="vs">VS</div>
+
+                <div class="player-card player-two">
+                    <div class="player-avatar">👩🏻‍🚀</div>
+                    <h3>Player Two</h3>
+                    <input type="text" id="playerTwo" placeholder="Enter second player's name" maxlength="16">
+                </div>
+
+            </div>
+
+            <div class="section-heading game-heading">
+                <h2>🎯 Choose Your Game</h2>
+                <p>Select a game you want to play together.</p>
+            </div>
+
+            <div class="game-grid">
+
+                <button class="game-card memory selected" data-game="memory">
+                    <span class="game-icon">🃏</span>
+                    <h3>Memory Magic</h3>
+                    <p>Test your memory!</p>
+                </button>
+
+                <button class="game-card math" data-game="math">
+                    <span class="game-icon">🔢</span>
+                    <h3>Math Adventure</h3>
+                    <p>Challenge your maths!</p>
+                </button>
+
+                <button class="game-card puzzle" data-game="puzzle">
+                    <span class="game-icon">🧩</span>
+                    <h3>Brain Puzzle</h3>
+                    <p>Think and solve!</p>
+                </button>
+
+                <button class="game-card word" data-game="word">
+                    <span class="game-icon">🔤</span>
+                    <h3>Word Wonder</h3>
+                    <p>Explore words!</p>
+                </button>
+
+                <button class="game-card focus" data-game="focus">
+                    <span class="game-icon">🎯</span>
+                    <h3>Focus Finder</h3>
+                    <p>Test your focus!</p>
+                </button>
+
+            </div>
+
+            <p id="setupMessage" class="message"></p>
+
+            <button id="startGame" class="start-button">
+                Let's Play Together! 🚀
+            </button>
+
+        </section>
+
+        <!-- GAME SCREEN -->
+        <section id="gameScreen" class="game-screen hidden">
+
+            <div class="game-top">
+                <button id="changeGame" class="small-button">← Change Game</button>
+                <span id="roundLabel">Round 1 / 5</span>
+            </div>
+
+            <h2 id="currentGameTitle">Memory Magic</h2>
+
+            <div class="scoreboard">
+
+                <div class="score-card active-score" id="scoreCardOne">
+                    <span class="score-avatar">🧑🏻‍🚀</span>
+                    <h3 id="nameOne">Player One</h3>
+                    <strong id="scoreOne">0</strong>
+                    <small>POINTS</small>
+                </div>
+
+                <div class="score-card" id="scoreCardTwo">
+                    <span class="score-avatar">👩🏻‍🚀</span>
+                    <h3 id="nameTwo">Player Two</h3>
+                    <strong id="scoreTwo">0</strong>
+                    <small>POINTS</small>
+                </div>
+
+            </div>
+
+            <div class="turn-indicator" id="turnIndicator">
+                🟢 Player One's Turn
+            </div>
+
+            <div class="progress-track">
+                <div id="progressBar" class="progress-bar"></div>
+            </div>
+
+            <div class="question-box">
+
+                <div class="question-number" id="questionNumber">QUESTION 1</div>
+
+                <h2 id="questionText">Get ready!</h2>
+
+                <div id="answerArea" class="answer-grid"></div>
+
+                <p id="feedback" class="feedback"></p>
+
+                <button id="nextButton" class="next-button hidden">
+                    Next Turn →
+                </button>
+
+            </div>
+
+        </section>
+
+        <!-- RESULT SCREEN -->
+        <section id="resultScreen" class="result-screen hidden">
+
+            <div class="trophy">🏆</div>
+            <div class="hero-tag">GAME COMPLETED</div>
+
+            <h1 id="resultTitle">Amazing Game!</h1>
+            <p id="resultMessage">You both did a great job!</p>
+
+            <div class="final-scores">
+
+                <div class="final-score-card">
+                    <span>🧑🏻‍🚀</span>
+                    <h3 id="finalNameOne">Player One</h3>
+                    <strong id="finalScoreOne">0</strong>
+                </div>
+
+                <div class="final-score-card">
+                    <span>👩🏻‍🚀</span>
+                    <h3 id="finalNameTwo">Player Two</h3>
+                    <strong id="finalScoreTwo">0</strong>
+                </div>
+
+            </div>
+
+            <button id="playAgain" class="start-button">Play Again 🔄</button>
+            <button id="newGame" class="secondary-button">Choose Another Game 🎮</button>
+            <a href="index.html" class="home-link">Return to Homepage</a>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>🧠 Khelearn — Learning is better together!</p>
+    </footer>
+
+    <script src="together.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Math Adventure | Khelearn</title>
+
+  <link rel="stylesheet" href="math.css">
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="math-header">
+
+    <a href="index.html" class="logo">
+      🧠 Brain<span>Boost</span>
+    </a>
+
+    <a href="index.html" class="home-button">
+      🏠 Home
+    </a>
+
+  </header>
+
+
+  <!-- MAIN GAME -->
+  <main class="math-container">
+
+    <!-- GAME INTRO -->
+    <section class="math-intro">
+
+      <span class="math-tag">
+        🌈 LET'S LEARN MATH!
+      </span>
+
+      <h1>🔢 Math Adventure!</h1>
+
+      <p>
+        Explore numbers, solve puzzles and become a
+        little maths champion!
+      </p>
+
+    </section>
+
+
+    <!-- GAME CATEGORY -->
+    <section class="math-categories">
+
+      <h2>Choose Your Challenge</h2>
+
+      <div class="category-buttons">
+
+        <button class="category-btn active"
+          data-category="counting">
+          🔢 Counting
+        </button>
+
+        <button class="category-btn"
+          data-category="addition">
+          ➕ Addition
+        </button>
+
+        <button class="category-btn"
+          data-category="subtraction">
+          ➖ Subtraction
+        </button>
+
+        <button class="category-btn"
+          data-category="shapes">
+          🔷 Shapes
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- SCORE BOARD -->
+    <section class="math-scoreboard">
+
+      <div class="math-score-box">
+        <span>⭐</span>
+        <p>Stars</p>
+        <strong id="mathStars">0</strong>
+      </div>
+
+      <div class="math-score-box">
+        <span>🎯</span>
+        <p>Score</p>
+        <strong id="mathScore">0</strong>
+      </div>
+
+      <div class="math-score-box">
+        <span>🔥</span>
+        <p>Streak</p>
+        <strong id="mathStreak">0</strong>
+      </div>
+
+    </section>
+
+
+    <!-- QUESTION AREA -->
+    <section class="question-card">
+
+      <div class="question-top">
+        <span>🧠 Brain Challenge</span>
+        <span id="questionNumber">Question 1</span>
+      </div>
+
+      <h2 id="questionText">
+        How many apples do you see?
+      </h2>
+
+      <div id="questionVisual" class="question-visual">
+        🍎 🍎 🍎
+      </div>
+
+      <!-- ANSWER OPTIONS -->
+      <div id="answerOptions" class="answer-options">
+
+        <button class="answer-btn">2</button>
+        <button class="answer-btn">3</button>
+        <button class="answer-btn">4</button>
+
+      </div>
+
+      <!-- FEEDBACK -->
+      <div id="mathFeedback" class="math-feedback"
+        aria-live="polite">
+        Choose your answer! 🌟
+      </div>
+
+      <!-- NEXT BUTTON -->
+      <button id="nextQuestion" class="next-button"
+        disabled>
+        Next Question ➡️
+      </button>
+
+    </section>
+
+
+    <!-- GAME CONTROLS -->
+    <section class="math-controls">
+
+      <button id="restartMath" class="restart-math">
+        🔄 Restart Game
+      </button>
+
+      <button id="mathSound" class="restart-math">
+        🔊 Sound On
+      </button>
+
+    </section>
+
+
+    <!-- COMPLETION MESSAGE -->
+    <section id="mathWin" class="math-win" hidden>
+
+      <h2>🏆 Amazing Work!</h2>
+
+      <p>You are a Math Adventure Champion!</p>
+
+      <div id="mathFinalStars"></div>
+
+      <button id="playMathAgain" class="next-button">
+        Play Again 🚀
+      </button>
+
+    </section>
+
+  </main>
+
+
+  <!-- JAVASCRIPT -->
+  <script src="math.js"></script>
+
+</body>
+</html>

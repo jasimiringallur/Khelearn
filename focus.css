@@ -1,0 +1,282 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Trebuchet MS', sans-serif;
+    background: linear-gradient(135deg, #e0f7fa, #f3e5f5, #fff3e0);
+    min-height: 100vh;
+    color: #333;
+}
+
+.focus-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 7%;
+    background: white;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #6750a4;
+    text-decoration: none;
+}
+
+.home-button {
+    text-decoration: none;
+    background: #6750a4;
+    color: white;
+    padding: 11px 22px;
+    border-radius: 25px;
+    font-weight: bold;
+}
+
+.focus-container {
+    max-width: 850px;
+    margin: 35px auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.focus-intro {
+    margin-bottom: 30px;
+}
+
+.focus-tag {
+    display: inline-block;
+    background: #fff0c2;
+    color: #9b6500;
+    padding: 9px 18px;
+    border-radius: 25px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.focus-intro h1 {
+    color: #6750a4;
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+.focus-intro p {
+    color: #666;
+    font-size: 17px;
+}
+
+.focus-levels {
+    margin-bottom: 25px;
+}
+
+.focus-levels h3 {
+    margin-bottom: 15px;
+    color: #444;
+}
+
+.level-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.level-btn {
+    border: 2px solid #d7c9f5;
+    background: white;
+    padding: 11px 24px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.level-btn:hover,
+.level-btn.active {
+    background: #6750a4;
+    color: white;
+    border-color: #6750a4;
+}
+
+.focus-scoreboard {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.score-box {
+    background: white;
+    padding: 15px 8px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.score-box span {
+    display: block;
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 7px;
+}
+
+.score-box strong {
+    font-size: 23px;
+    color: #6750a4;
+}
+
+.focus-card {
+    background: white;
+    border-radius: 25px;
+    padding: 30px 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+.focus-top {
+    display: flex;
+    justify-content: center;
+    color: #888;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.focus-card h2 {
+    color: #444;
+    font-size: 25px;
+    margin-bottom: 25px;
+}
+
+.focus-visual {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    max-width: 500px;
+    margin: auto;
+}
+
+.object-option {
+    background: #f3efff;
+    border: 3px solid transparent;
+    border-radius: 18px;
+    min-height: 90px;
+    font-size: 42px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.object-option:hover:not(:disabled) {
+    transform: scale(1.08);
+    background: #e4dcff;
+}
+
+.object-option.correct {
+    background: #d7f8df;
+    border-color: #42b86b;
+}
+
+.object-option.wrong {
+    background: #ffe0e0;
+    border-color: #e76b6b;
+}
+
+.object-option:disabled {
+    cursor: default;
+}
+
+.focus-feedback {
+    min-height: 35px;
+    margin: 22px 0 12px;
+    font-size: 17px;
+    font-weight: bold;
+    color: #6750a4;
+}
+
+.next-button {
+    background: #ffb84d;
+    color: #333;
+    border: none;
+    padding: 13px 30px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.next-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.focus-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 22px;
+}
+
+.focus-controls button,
+.focus-win button {
+    border: none;
+    background: #6750a4;
+    color: white;
+    padding: 12px 22px;
+    border-radius: 25px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.focus-win {
+    background: white;
+    padding: 35px 20px;
+    margin-top: 25px;
+    border-radius: 25px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+.focus-win h2 {
+    color: #6750a4;
+    margin-bottom: 12px;
+}
+
+.focus-win h3 {
+    font-size: 30px;
+    margin: 18px 0;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+@media (max-width: 600px) {
+    .focus-container {
+        margin: 15px auto;
+        padding: 12px;
+    }
+
+    .focus-intro h1 {
+        font-size: 32px;
+    }
+
+    .focus-scoreboard {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .focus-visual {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+    }
+
+    .object-option {
+        min-height: 75px;
+        font-size: 34px;
+    }
+
+    .focus-card {
+        padding: 22px 12px;
+    }
+}

@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Wonder - Khelearn</title>
+    <link rel="stylesheet" href="word.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <header class="word-header">
+        <div class="logo">🧠 Khelearn</div>
+        <a href="index.html" class="home-button">🏠 Home</a>
+    </header>
+
+    <main class="word-container">
+
+        <section class="word-intro">
+            <span class="word-tag">🔤 LET'S LEARN WORDS</span>
+            <h1>Word Wonder 🌈</h1>
+            <p>Discover letters, learn new words and become a spelling star!</p>
+        </section>
+
+        <section class="word-levels">
+            <h3>Choose Your Level</h3>
+            <div class="level-buttons">
+                <button class="level-btn active" data-level="easy">🌱 Easy</button>
+                <button class="level-btn" data-level="medium">⭐ Medium</button>
+                <button class="level-btn" data-level="hard">🚀 Hard</button>
+            </div>
+        </section>
+
+        <section class="word-categories">
+            <h3>Choose Your Activity</h3>
+            <div class="category-buttons">
+                <button class="category-btn active" data-category="alphabet">🔤 Alphabet</button>
+                <button class="category-btn" data-category="picture">🖼️ Picture Match</button>
+                <button class="category-btn" data-category="spelling">✏️ Spelling</button>
+            </div>
+        </section>
+
+        <section class="word-scoreboard">
+            <div class="score-box">
+                <span>⭐ Stars</span>
+                <strong id="wordStars">0</strong>
+            </div>
+
+            <div class="score-box">
+                <span>🏆 Score</span>
+                <strong id="wordScore">0</strong>
+            </div>
+
+            <div class="score-box">
+                <span>🔥 Streak</span>
+                <strong id="wordStreak">0</strong>
+            </div>
+
+            <div class="score-box">
+                <span>🥇 Best</span>
+                <strong id="wordBest">0</strong>
+            </div>
+        </section>
+
+        <section class="word-card">
+
+            <div class="word-top">
+                <span id="wordQuestionNumber">Question 1</span>
+                <span>Let's play! 🌟</span>
+            </div>
+
+            <h2 id="wordQuestion">Which letter does Apple start with?</h2>
+
+            <div class="word-visual" id="wordVisual">
+                🍎
+            </div>
+
+            <div class="word-answers" id="wordAnswers">
+                <button class="answer-btn">A</button>
+                <button class="answer-btn">B</button>
+                <button class="answer-btn">C</button>
+            </div>
+
+            <div class="word-feedback" id="wordFeedback">
+                Choose your answer! 🌈
+            </div>
+
+            <button class="next-button" id="nextWord">
+                Next Question ➜
+            </button>
+
+        </section>
+
+        <section class="word-controls">
+            <button id="restartWord">🔄 Restart</button>
+            <button id="wordSound">🔊 Sound On</button>
+        </section>
+
+        <section class="word-win hidden" id="wordWin">
+            <div class="win-emoji">🏆🎉</div>
+            <h2>Amazing Word Explorer!</h2>
+            <p>You completed the activity!</p>
+            <div id="wordFinalStars">⭐⭐⭐⭐⭐</div>
+            <button id="playWordAgain">Play Again 🔄</button>
+        </section>
+
+    </main>
+
+    <script src="word.js"></script>
+</body>
+</html>

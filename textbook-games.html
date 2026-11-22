@@ -1,0 +1,492 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson to Games | Khelearn</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .lesson-builder {
+      max-width: 850px;
+      margin: 50px auto;
+      padding: 25px;
+    }
+
+    .lesson-header {
+      background: linear-gradient(135deg, #7157e8, #9b7bff);
+      color: white;
+      padding: 35px;
+      border-radius: 24px;
+      margin-bottom: 25px;
+    }
+
+    .lesson-header h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+
+    .lesson-box {
+      background: white;
+      border-radius: 22px;
+      padding: 30px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+      margin-bottom: 25px;
+    }
+
+    .lesson-box label {
+      display: block;
+      margin: 20px 0 8px;
+      font-weight: 600;
+    }
+
+    .lesson-box input[type="text"],
+    .lesson-box select,
+    .lesson-box textarea {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+
+    .upload-area {
+      border: 2px dashed #b7a8f5;
+      background: #f7f5ff;
+      padding: 35px 20px;
+      text-align: center;
+      border-radius: 18px;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+
+    .upload-area:hover {
+      background: #efebff;
+    }
+
+    .upload-area p {
+      margin: 10px 0;
+    }
+
+    .game-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .game-option {
+      border: 1px solid #e5e0f5;
+      padding: 18px;
+      border-radius: 15px;
+      background: #faf9ff;
+    }
+
+    .game-option input {
+      margin-right: 8px;
+    }
+
+    .generate-btn {
+      width: 100%;
+      padding: 17px;
+      background: #7157e8;
+      color: white;
+      border: none;
+      border-radius: 15px;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 25px;
+    }
+
+    .generate-btn:hover {
+      background: #6045d0;
+    }
+
+    .lesson-note {
+      font-size: 14px;
+      color: #777;
+      margin-top: 12px;
+    }
+
+    #fileName {
+      margin-top: 12px;
+      color: #7157e8;
+      font-weight: 600;
+    }
+
+    @media(max-width:600px) {
+      .lesson-builder {
+        padding: 15px;
+        margin: 20px auto;
+      }
+
+      .lesson-header h1 {
+        font-size: 1.7rem;
+      }
+
+      .lesson-box {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="lesson-builder">
+
+    <section class="lesson-header">
+      <h1>Turn Lessons into Games!</h1>
+      <p>Upload a school lesson and let learning become an adventure.</p>
+    </section>
+
+    <section class="lesson-box">
+
+      <h2>1. Upload your lesson</h2>
+      <p>Choose a textbook page, chapter or learning material.</p>
+
+      <label for="lessonFile" class="upload-area">
+        <div style="font-size:40px;">📚</div>
+        <p><strong>Click to upload your lesson</strong></p>
+        <p>PDF, JPG or PNG</p>
+      </label>
+
+      <input
+        type="file"
+        id="lessonFile"
+        accept=".pdf,.jpg,.jpeg,.png"
+        hidden
+      >
+
+      <p id="fileName"></p>
+
+      <label for="lessonText">Or paste your lesson text</label>
+
+      <textarea
+        id="lessonText"
+        rows="6"
+        placeholder="Paste the lesson content here..."
+      ></textarea>
+
+
+<button type="button" id="previewLessonBtn" style="
+  margin-top:15px;
+  padding:12px 20px;
+  border:none;
+  border-radius:12px;
+  background:#eee9ff;
+  color:#7157e8;
+  font-weight:bold;
+  cursor:pointer;
+">
+  📖 Preview Extracted Lesson
+</button>
+
+<div id="lessonPreview" style="
+  display:none;
+  margin-top:20px;
+  padding:20px;
+  background:#f7f5ff;
+  border:1px solid #e3dcff;
+  border-radius:16px;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+  max-height:400px;
+  overflow-y:auto;
+">
+</div>
+
+
+      <label for="grade">2. Select the class</label>
+
+      <select id="grade">
+        <option value="">Choose class</option>
+        <option>Grade 1</option>
+        <option>Grade 2</option>
+        <option>Grade 3</option>
+        <option>Grade 4</option>
+        <option>Grade 5</option>
+        <option>Grade 6</option>
+      </select>
+
+      <label for="subject">3. Select the subject</label>
+
+      <select id="subject">
+        <option value="">Choose subject</option>
+        <option>Mathematics</option>
+        <option>Science</option>
+        <option>English</option>
+        <option>Social Studies</option>
+        <option>History</option>
+        <option>Geography</option>
+        <option>Language</option>
+        <option>Other</option>
+      </select>
+
+      <label>4. Choose the games</label>
+
+      <div class="game-options">
+
+        <label class="game-option">
+          <input type="checkbox" value="Quiz" checked>
+          🧠 Quiz
+        </label>
+
+        <label class="game-option">
+          <input type="checkbox" value="Matching" checked>
+          🔗 Matching
+        </label>
+
+        <label class="game-option">
+          <input type="checkbox" value="Memory">
+          🎴 Memory
+        </label>
+
+        <label class="game-option">
+          <input type="checkbox" value="Fill Blanks">
+          ✏️ Fill the Blanks
+        </label>
+
+        <label class="game-option">
+          <input type="checkbox" value="Word Hunt">
+          🔎 Word Hunt
+        </label>
+
+        <label class="game-option">
+          <input type="checkbox" value="Puzzle">
+          🧩 Puzzle
+        </label>
+
+      </div>
+
+      <button class="generate-btn" id="generateBtn">
+        ✨ Generate Learning Games
+      </button>
+      <div id="gameResults" style="margin-top:25px;" aria-live="polite"></div>
+
+      <p class="lesson-note">
+        Your lesson will be used to create learning activities
+        suitable for the selected class.
+      </p>
+
+    </section>
+
+  </main>
+
+
+<script>
+  const fileInput = document.getElementById("lessonFile");
+  const fileName = document.getElementById("fileName");
+  const lessonText = document.getElementById("lessonText");
+  const generateBtn = document.getElementById("generateBtn");
+
+  const previewLessonBtn = document.getElementById("previewLessonBtn");
+  const lessonPreview = document.getElementById("lessonPreview");
+
+  previewLessonBtn.addEventListener("click", function() {
+    const content = lessonText.value.trim();
+
+    if (!content) {
+      alert("Please upload a PDF or paste lesson text first.");
+      return;
+    }
+
+    lessonPreview.style.display = "block";
+    lessonPreview.textContent = content;
+  });
+
+
+  // Load the PDF library dynamically
+  async function loadPDFLibrary() {
+    if (window.pdfjsLib) return window.pdfjsLib;
+
+    const script = document.createElement("script");
+    script.src = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js";
+
+    document.head.appendChild(script);
+
+    await new Promise((resolve, reject) => {
+      script.onload = resolve;
+      script.onerror = reject;
+    });
+
+    return window.pdfjsLib;
+  }
+
+  fileInput.addEventListener("change", async function() {
+    const file = this.files[0];
+
+    if (!file) return;
+
+    fileName.textContent = "Selected: " + file.name;
+
+    if (file.type !== "application/pdf") {
+      fileName.textContent = "Please select a PDF file.";
+      return;
+    }
+
+    fileName.textContent = "Loading PDF reader...";
+
+    try {
+      const pdfjsLib = await loadPDFLibrary();
+
+      pdfjsLib.GlobalWorkerOptions.workerSrc =
+        "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+      fileName.textContent = "Reading your PDF...";
+
+      const buffer = await file.arrayBuffer();
+      const pdf = await pdfjsLib.getDocument({ data: buffer }).promise;
+
+      let extractedText = "";
+
+      for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++) {
+        const page = await pdf.getPage(pageNumber);
+        const content = await page.getTextContent();
+
+        const pageText = content.items
+          .map(item => item.str)
+          .join(" ");
+
+        extractedText +=
+          "\n\n--- Page " + pageNumber + " ---\n" + pageText;
+      }
+
+      lessonText.value = extractedText.trim();
+
+      fileName.textContent =
+        "Successfully read " + pdf.numPages + " pages.";
+
+    } catch {
+      console.error("PDF reading error:", error);
+      fileName.textContent = "PDF reading failed. Check Console.";
+    }
+  });
+
+  generateBtn.addEventListener("click", async function() {
+    const text = lessonText.value.trim();
+    const grade = document.getElementById("grade").value;
+    const subject = document.getElementById("subject").value;
+    const games = Array.from(
+      document.querySelectorAll(".game-options input:checked")
+    ).map(input => input.value);
+    const gameResults = document.getElementById("gameResults");
+
+    if (!text) {
+      alert("Please upload a PDF or paste lesson text.");
+      return;
+    }
+
+    if (!grade || !subject) {
+      alert("Please select the class and subject.");
+      return;
+    }
+
+    if (games.length === 0) {
+      alert("Please select at least one game.");
+      return;
+    }
+
+    gameResults.textContent = "Generating your games... Please wait.";
+    gameResults.setAttribute("aria-busy", "true");
+    generateBtn.disabled = true;
+
+    try {
+      let response;
+      try {
+        response = await fetch("http://localhost:3000/api/generate", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            lessonText: text,
+            grade: grade,
+            subject: subject,
+            games: games
+          })
+        });
+      } catch (error) {
+        throw new Error(
+          "Could not connect to the game server. Make sure the backend is running at http://localhost:3000, then try again."
+        );
+      }
+
+      const data = await response.json().catch(() => null);
+
+      if (!response.ok) {
+        throw new Error(
+          data && data.error
+            ? data.error
+            : "The server could not generate games. Please try again."
+        );
+      }
+
+      if (!data || !Array.isArray(data.games) || data.games.length === 0) {
+        throw new Error("The AI did not return any games. Please try again.");
+      }
+
+      gameResults.replaceChildren();
+
+      data.games.forEach(game => {
+        const card = document.createElement("div");
+        card.style.cssText =
+          "background:#f7f5ff;padding:20px;margin-top:20px;border-radius:16px;border:1px solid #e3dcff;";
+
+        const title = document.createElement("h2");
+        title.textContent = game.title || game.type || "Educational Game";
+        card.appendChild(title);
+
+        if (Array.isArray(game.questions)) {
+          game.questions.forEach((q, index) => {
+            const question = document.createElement("div");
+            question.style.marginBottom = "20px";
+
+            const heading = document.createElement("h3");
+            heading.textContent = (index + 1) + ". " + (q.question || "");
+            question.appendChild(heading);
+
+            if (Array.isArray(q.options)) {
+              q.options.forEach(option => {
+                const p = document.createElement("p");
+                p.textContent = option;
+                question.appendChild(p);
+              });
+            }
+
+            if (q.answer) {
+              const answer = document.createElement("p");
+              answer.textContent = "Answer: " + q.answer;
+              answer.style.fontWeight = "bold";
+              question.appendChild(answer);
+            }
+
+            if (q.explanation) {
+              const explanation = document.createElement("p");
+              explanation.textContent = "Explanation: " + q.explanation;
+              question.appendChild(explanation);
+            }
+
+            card.appendChild(question);
+          });
+        }
+
+        gameResults.appendChild(card);
+      });
+    } catch (error) {
+      console.error("Game generation error:", error);
+      gameResults.textContent = error.message || "Game generation failed. Please try again.";
+    } finally {
+      gameResults.removeAttribute("aria-busy");
+      generateBtn.disabled = false;
+    }
+  });
+</script>
+
+
+</body>
+</html>

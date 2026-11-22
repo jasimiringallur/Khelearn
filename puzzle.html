@@ -1,0 +1,216 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Brain Puzzle | Khelearn</title>
+
+  <link rel="stylesheet" href="puzzle.css">
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="puzzle-header">
+
+    <a href="index.html" class="logo">
+      🧠 Brain<span>Boost</span>
+    </a>
+
+    <a href="index.html" class="home-button">
+      🏠 Home
+    </a>
+
+  </header>
+
+
+  <!-- MAIN GAME -->
+  <main class="puzzle-container">
+
+    <!-- INTRO -->
+    <section class="puzzle-intro">
+
+      <span class="puzzle-tag">
+        🌈 THINK • EXPLORE • DISCOVER
+      </span>
+
+      <h1>🧩 Brain Puzzle!</h1>
+
+      <p>
+        Challenge your brain with fun puzzles
+        and become a little genius!
+      </p>
+
+    </section>
+
+
+    <!-- DIFFICULTY -->
+    <section class="puzzle-levels">
+
+      <h2>Choose Your Level</h2>
+
+      <div class="level-buttons">
+
+        <button class="level-btn active" data-level="easy">
+          🌱 Easy
+        </button>
+
+        <button class="level-btn" data-level="medium">
+          ⭐ Medium
+        </button>
+
+        <button class="level-btn" data-level="hard">
+          🚀 Hard
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- PUZZLE CATEGORIES -->
+    <section class="puzzle-categories">
+
+      <h2>Choose Your Challenge</h2>
+
+      <div class="category-buttons">
+
+        <button class="category-btn active"
+          data-category="colors">
+          🎨 Color Patterns
+        </button>
+
+        <button class="category-btn"
+          data-category="numbers">
+          🔢 Number Patterns
+        </button>
+
+        <button class="category-btn"
+          data-category="shapes">
+          🔷 Shape Puzzles
+        </button>
+
+        <button class="category-btn"
+          data-category="missing">
+          🧩 Missing Objects
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- SCOREBOARD -->
+    <section class="puzzle-scoreboard">
+
+      <div class="score-box">
+        <span>⭐</span>
+        <p>Stars</p>
+        <strong id="puzzleStars">0</strong>
+      </div>
+
+      <div class="score-box">
+        <span>🎯</span>
+        <p>Score</p>
+        <strong id="puzzleScore">0</strong>
+      </div>
+
+      <div class="score-box">
+        <span>🔥</span>
+        <p>Streak</p>
+        <strong id="puzzleStreak">0</strong>
+      </div>
+
+      <div class="score-box">
+        <span>🏆</span>
+        <p>Best Score</p>
+        <strong id="puzzleBest">0</strong>
+      </div>
+
+    </section>
+
+
+    <!-- QUESTION CARD -->
+    <section class="puzzle-card">
+
+      <div class="puzzle-top">
+        <span>🧠 Brain Challenge</span>
+        <span id="puzzleQuestionNumber">
+          Question 1
+        </span>
+      </div>
+
+      <h2 id="puzzleQuestion">
+        What comes next in this pattern?
+      </h2>
+
+      <!-- VISUAL PUZZLE -->
+      <div id="puzzleVisual" class="puzzle-visual">
+        🔴 🟡 🔴 🟡 ❓
+      </div>
+
+      <!-- ANSWERS -->
+      <div id="puzzleAnswers" class="puzzle-answers">
+
+        <button class="puzzle-answer">🔴</button>
+        <button class="puzzle-answer">🟡</button>
+        <button class="puzzle-answer">🔵</button>
+
+      </div>
+
+      <!-- FEEDBACK -->
+      <div id="puzzleFeedback" class="puzzle-feedback"
+        aria-live="polite">
+        Think carefully and choose your answer! 🌟
+      </div>
+
+      <!-- NEXT -->
+      <button id="nextPuzzle" class="next-button" disabled>
+        Next Puzzle ➡️
+      </button>
+
+    </section>
+
+
+    <!-- CONTROLS -->
+    <section class="puzzle-controls">
+
+      <button id="restartPuzzle" class="restart-button">
+        🔄 Restart Game
+      </button>
+
+      <button id="puzzleSound" class="restart-button">
+        🔊 Sound On
+      </button>
+
+    </section>
+
+
+    <!-- WIN SCREEN -->
+    <section id="puzzleWin" class="puzzle-win" hidden>
+
+      <div class="win-emoji">🏆🎉🌟</div>
+
+      <h2>Amazing Little Genius!</h2>
+
+      <p>
+        You completed all the brain challenges!
+      </p>
+
+      <div id="puzzleFinalStars"></div>
+
+      <button id="playPuzzleAgain" class="next-button">
+        Play Again 🚀
+      </button>
+
+    </section>
+
+  </main>
+
+
+  <script src="puzzle.js"></script>
+
+</body>
+</html>

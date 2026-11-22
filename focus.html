@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Focus Finder | Khelearn</title>
+    <link rel="stylesheet" href="focus.css">
+</head>
+<body>
+
+    <header class="focus-header">
+        <a href="index.html" class="logo">🧠 Khelearn</a>
+        <a href="index.html" class="home-button">🏠 Home</a>
+    </header>
+
+    <main class="focus-container">
+
+        <section class="focus-intro">
+            <span class="focus-tag">👀 LOOK CAREFULLY!</span>
+            <h1>Focus Finder</h1>
+            <p>Find the hidden object and train your observation skills!</p>
+        </section>
+
+        <section class="focus-levels">
+            <h3>Choose Your Level</h3>
+            <div class="level-buttons">
+                <button class="level-btn active" data-level="easy">🌱 Easy</button>
+                <button class="level-btn" data-level="medium">⭐ Medium</button>
+                <button class="level-btn" data-level="hard">🔥 Hard</button>
+            </div>
+        </section>
+
+        <section class="focus-scoreboard">
+            <div class="score-box">
+                <span>⭐ Stars</span>
+                <strong id="focusStars">0</strong>
+            </div>
+            <div class="score-box">
+                <span>🏆 Score</span>
+                <strong id="focusScore">0</strong>
+            </div>
+            <div class="score-box">
+                <span>🔥 Streak</span>
+                <strong id="focusStreak">0</strong>
+            </div>
+            <div class="score-box">
+                <span>🏅 Best</span>
+                <strong id="focusBest">0</strong>
+            </div>
+        </section>
+
+        <section class="focus-card">
+            <div class="focus-top">
+                <span id="focusQuestionNumber">Question 1 / 10</span>
+            </div>
+
+            <h2 id="focusQuestion">Find the ⭐ star!</h2>
+
+            <div id="focusVisual" class="focus-visual"></div>
+
+            <div id="focusFeedback" class="focus-feedback">
+                Choose the correct object!
+            </div>
+
+            <button id="nextFocus" class="next-button" disabled>
+                Next Question ➜
+            </button>
+        </section>
+
+        <section class="focus-controls">
+            <button id="restartFocus">🔄 Restart</button>
+            <button id="focusSound">🔊 Sound On</button>
+        </section>
+
+        <section id="focusWin" class="focus-win" hidden>
+            <h2>🎉 Amazing Work!</h2>
+            <p>You completed Focus Finder!</p>
+            <h3 id="focusFinalStars">⭐⭐⭐</h3>
+            <button id="playFocusAgain">Play Again 🔄</button>
+        </section>
+
+    </main>
+
+    <script src="focus.js"></script>
+</body>
+</html>
