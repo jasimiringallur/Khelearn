@@ -45,8 +45,9 @@ let matches = 0;
 let stars = 0;
 
 let soundEnabled = true;
-let gameTimer = null;
+let cardTimeout = null;
 let audioContext = null;
+let hasStarted = false;
 
 // ========================================
 // SOUND EFFECTS
@@ -166,9 +167,10 @@ function saveBestScore() {
 // START GAME
 // ========================================
 
-function startGame() {
+function initializeMemoryGame() {
 
-  clearTimeout(gameTimer);
+  clearTimeout(cardTimeout);
+  hasStarted = true;
 
   const pairCount = levels[selectedLevel];
 
@@ -189,6 +191,9 @@ function startGame() {
   locked = false;
 
   winMessage.hidden = true;
+  document.querySelector(".score-board").hidden = false;
+  document.querySelector(".board-section").hidden = false;
+  restartButton.hidden = false;
 
   document.querySelectorAll(".confetti")
     .forEach(item => item.remove());
@@ -232,7 +237,7 @@ function startGame() {
 
 function flipCard(card) {
 
-  if (locked) return;
+  if (!gameTimer.isActive() || locked) return;
 
   if (card.classList.contains("flipped")) return;
 
@@ -299,7 +304,7 @@ function checkMatch() {
 
       locked = true;
 
-      gameTimer = setTimeout(finishGame, 700);
+      cardTimeout = setTimeout(finishGame, 700);
 
     }
 
@@ -312,7 +317,7 @@ function checkMatch() {
     gameMessage.textContent =
       "Good try! Let's find another pair! 💜";
 
-    gameTimer = setTimeout(() => {
+    cardTimeout = setTimeout(() => {
 
       firstCard.textContent = "❓";
       secondCard.textContent = "❓";
@@ -406,6 +411,7 @@ function launchConfetti() {
 
 function finishGame() {
 
+  gameTimer.stop();
   locked = true;
 
   saveBestScore();
@@ -428,6 +434,20 @@ function finishGame() {
 
 }
 
+const gameTimer = window.createKhelearnGameTimer({
+  onStart: initializeMemoryGame,
+  onTimeUp: () => {
+    clearTimeout(cardTimeout);
+    locked = true;
+  },
+  getFinalScore: () =>
+    `Matches: ${matches} / ${levels[selectedLevel]} • Moves: ${moves} • Stars: ${stars}`
+});
+
+function startGame() {
+  return gameTimer.start();
+}
+
 // ========================================
 // DIFFICULTY SELECTION
 // ========================================
@@ -444,7 +464,7 @@ levelButtons.forEach(button => {
 
     selectedLevel = button.dataset.level;
 
-    startGame();
+    if (hasStarted) startGame();
 
   });
 
@@ -475,8 +495,5 @@ restartButton.addEventListener("click", startGame);
 
 playAgainButton.addEventListener("click", startGame);
 
-// ========================================
-// START FIRST GAME
-// ========================================
-
-startGame();
+updateScore();
+updateBestScore();

@@ -1,0 +1,189 @@
+[hidden] {
+  display: none !important;
+}
+
+.game-timer-setup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 20px auto;
+  padding: 18px;
+  border: 2px solid #e8e2ff;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #fff, #f5f1ff);
+  box-shadow: 0 10px 24px rgba(67, 45, 136, 0.1);
+}
+
+.game-timer-setup label {
+  color: #49388b;
+  font-weight: 700;
+}
+
+.game-timer-setup select,
+.game-timer-start,
+.game-time-up-button {
+  min-height: 46px;
+  border: 0;
+  border-radius: 14px;
+  font: inherit;
+  font-weight: 700;
+}
+
+.game-timer-setup select {
+  padding: 0 14px;
+  border: 2px solid #dcd3ff;
+  background: #fff;
+  color: #34265f;
+}
+
+.game-timer-start,
+.game-time-up-button {
+  padding: 0 22px;
+  background: linear-gradient(135deg, #7658e8, #5940c4);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 5px 12px rgba(89, 64, 196, 0.22);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.game-timer-start:hover,
+.game-time-up-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(89, 64, 196, 0.28);
+}
+
+.game-timer-start:focus-visible,
+.game-timer-setup select:focus-visible,
+.game-time-up-button:focus-visible {
+  outline: 3px solid #ffbd59;
+  outline-offset: 3px;
+}
+
+.game-timer-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: fit-content;
+  margin: 16px auto;
+  padding: 10px 20px;
+  border: 2px solid #ddd5ff;
+  border-radius: 999px;
+  background: #f2efff;
+  color: #49388b;
+  font-weight: 700;
+  box-shadow: 0 6px 16px rgba(67, 45, 136, 0.12);
+}
+
+.game-timer-display strong {
+  min-width: 62px;
+  font-size: 1.35rem;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+.game-timer-display.is-unlimited strong {
+  min-width: auto;
+}
+
+.game-timer-display.is-warning {
+  border-color: #f28a64;
+  background: #fff0e8;
+  color: #a63e22;
+  animation: game-timer-pulse 900ms ease-in-out infinite alternate;
+}
+
+.game-time-up {
+  position: fixed;
+  inset: 0;
+  width: min(440px, calc(100vw - 32px));
+  max-width: none;
+  max-height: calc(100vh - 32px);
+  margin: auto;
+  padding: 0;
+  overflow: auto;
+  border: 0;
+  border-radius: 26px;
+  background: transparent;
+  color: #34265f;
+  text-align: center;
+}
+
+.game-time-up::backdrop {
+  background: rgba(31, 24, 58, 0.62);
+  backdrop-filter: blur(4px);
+}
+
+.game-time-up-content {
+  padding: 30px 24px;
+  border: 3px solid #e8e2ff;
+  border-radius: 26px;
+  background: linear-gradient(145deg, #fff, #f4f0ff);
+  box-shadow: 0 20px 60px rgba(19, 13, 51, 0.28);
+}
+
+.game-time-up-icon {
+  font-size: 2.6rem;
+}
+
+.game-time-up h2 {
+  margin: 8px 0;
+  color: #6249ce;
+  font-size: clamp(1.7rem, 6vw, 2.2rem);
+}
+
+.game-time-up p {
+  margin: 10px 0;
+  line-height: 1.5;
+}
+
+.game-time-up-score {
+  color: #49388b;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+@keyframes game-timer-pulse {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.04);
+  }
+}
+
+@media (max-width: 520px) {
+  .game-timer-setup {
+    align-items: stretch;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .game-timer-setup select,
+  .game-timer-start {
+    width: 100%;
+  }
+
+  .game-timer-display {
+    width: max-content;
+    max-width: 100%;
+  }
+
+  .game-time-up-content {
+    padding: 26px 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .game-timer-display.is-warning {
+    animation: none;
+  }
+
+  .game-timer-start,
+  .game-time-up-button {
+    transition: none;
+  }
+}

@@ -8,6 +8,7 @@
   <title>Brain Puzzle | Khelearn</title>
 
   <link rel="stylesheet" href="puzzle.css">
+  <link rel="stylesheet" href="game-timer.css">
 </head>
 
 <body>
@@ -101,9 +102,26 @@
 
     </section>
 
+    <section class="game-timer-setup" id="gameTimerSetup">
+      <label for="gameTimeLimit">Choose your game time</label>
+      <select id="gameTimeLimit">
+        <option value="60">1 minute</option>
+        <option value="120">2 minutes</option>
+        <option value="180">3 minutes</option>
+        <option value="300">5 minutes</option>
+        <option value="0">Unlimited time</option>
+      </select>
+      <button type="button" class="game-timer-start" id="gameTimerStart">Start Game</button>
+    </section>
+
+    <div class="game-timer-display" id="gameTimerDisplay" role="timer"
+      aria-label="Time remaining" aria-live="off" hidden>
+      <span aria-hidden="true">⏱️ Time left</span>
+      <strong id="gameTimerValue">00:00</strong>
+    </div>
 
     <!-- SCOREBOARD -->
-    <section class="puzzle-scoreboard">
+    <section class="puzzle-scoreboard" hidden>
 
       <div class="score-box">
         <span>⭐</span>
@@ -133,7 +151,7 @@
 
 
     <!-- QUESTION CARD -->
-    <section class="puzzle-card">
+    <section class="puzzle-card hidden">
 
       <div class="puzzle-top">
         <span>🧠 Brain Challenge</span>
@@ -177,7 +195,7 @@
     <!-- CONTROLS -->
     <section class="puzzle-controls">
 
-      <button id="restartPuzzle" class="restart-button">
+      <button id="restartPuzzle" class="restart-button" hidden>
         🔄 Restart Game
       </button>
 
@@ -210,6 +228,7 @@
   </main>
 
 
+  <script src="game-timer.js"></script>
   <script src="puzzle.js"></script>
 
 </body>

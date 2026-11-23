@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Focus Finder | Khelearn</title>
     <link rel="stylesheet" href="focus.css">
+    <link rel="stylesheet" href="game-timer.css">
 </head>
 <body>
 
@@ -31,7 +32,25 @@
             </div>
         </section>
 
-        <section class="focus-scoreboard">
+        <section class="game-timer-setup" id="gameTimerSetup">
+            <label for="gameTimeLimit">Choose your game time</label>
+            <select id="gameTimeLimit">
+                <option value="60">1 minute</option>
+                <option value="120">2 minutes</option>
+                <option value="180">3 minutes</option>
+                <option value="300">5 minutes</option>
+                <option value="0">Unlimited time</option>
+            </select>
+            <button type="button" class="game-timer-start" id="gameTimerStart">Start Game</button>
+        </section>
+
+        <div class="game-timer-display" id="gameTimerDisplay" role="timer"
+            aria-label="Time remaining" aria-live="off" hidden>
+            <span aria-hidden="true">⏱️ Time left</span>
+            <strong id="gameTimerValue">00:00</strong>
+        </div>
+
+        <section class="focus-scoreboard" hidden>
             <div class="score-box">
                 <span>⭐ Stars</span>
                 <strong id="focusStars">0</strong>
@@ -50,7 +69,7 @@
             </div>
         </section>
 
-        <section class="focus-card">
+        <section class="focus-card" hidden>
             <div class="focus-top">
                 <span id="focusQuestionNumber">Question 1 / 10</span>
             </div>
@@ -69,7 +88,7 @@
         </section>
 
         <section class="focus-controls">
-            <button id="restartFocus">🔄 Restart</button>
+            <button id="restartFocus" hidden>🔄 Restart</button>
             <button id="focusSound">🔊 Sound On</button>
         </section>
 
@@ -82,6 +101,7 @@
 
     </main>
 
+    <script src="game-timer.js"></script>
     <script src="focus.js"></script>
 </body>
 </html>

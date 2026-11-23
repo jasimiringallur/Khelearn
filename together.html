@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Khelearn Together</title>
     <link rel="stylesheet" href="together.css">
+    <link rel="stylesheet" href="game-timer.css">
 </head>
 
 <body>
@@ -95,10 +96,21 @@
 
             </div>
 
+            <div class="game-timer-setup" id="gameTimerSetup">
+                <label for="gameTimeLimit">Choose your game time</label>
+                <select id="gameTimeLimit">
+                    <option value="60">1 minute</option>
+                    <option value="120">2 minutes</option>
+                    <option value="180">3 minutes</option>
+                    <option value="300">5 minutes</option>
+                    <option value="0">Unlimited time</option>
+                </select>
+            </div>
+
             <p id="setupMessage" class="message"></p>
 
-            <button id="startGame" class="start-button">
-                Let's Play Together! 🚀
+            <button id="gameTimerStart" class="start-button">
+                Start Game 🚀
             </button>
 
         </section>
@@ -109,6 +121,12 @@
             <div class="game-top">
                 <button id="changeGame" class="small-button">← Change Game</button>
                 <span id="roundLabel">Round 1 / 5</span>
+            </div>
+
+            <div class="game-timer-display" id="gameTimerDisplay" role="timer"
+                aria-label="Time remaining" aria-live="off" hidden>
+                <span aria-hidden="true">⏱️ Time left</span>
+                <strong id="gameTimerValue">00:00</strong>
             </div>
 
             <h2 id="currentGameTitle">Memory Magic</h2>
@@ -194,6 +212,7 @@
         <p>🧠 Khelearn — Learning is better together!</p>
     </footer>
 
+    <script src="game-timer.js"></script>
     <script src="together.js"></script>
 
 </body>

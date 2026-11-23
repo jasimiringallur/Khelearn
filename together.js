@@ -10,7 +10,6 @@ const resultScreen = document.getElementById("resultScreen");
 const playerOneInput = document.getElementById("playerOne");
 const playerTwoInput = document.getElementById("playerTwo");
 
-const startButton = document.getElementById("startGame");
 const setupMessage = document.getElementById("setupMessage");
 
 const gameCards = document.querySelectorAll(".game-card");
@@ -384,8 +383,6 @@ try {
 // START GAME
 // =======================================
 
-startButton.addEventListener("click", startGame);
-
 function startGame() {
 
     const name1 = playerOneInput.value.trim();
@@ -393,12 +390,12 @@ function startGame() {
 
     if (!name1 || !name2) {
         setupMessage.textContent = "Please enter both player names!";
-        return;
+        return false;
     }
 
     if (name1.toLowerCase() === name2.toLowerCase()) {
         setupMessage.textContent = "Please enter two different names!";
-        return;
+        return false;
     }
 
     players = [name1, name2];
@@ -412,7 +409,7 @@ function startGame() {
     if (questions.length < 10) {
         setupMessage.textContent =
             "This game needs at least 10 questions. Please add more questions.";
-        return;
+        return false;
     }
 
     questions.sort(() => Math.random() - 0.5);
@@ -427,7 +424,14 @@ function startGame() {
     gameScreen.classList.remove("hidden");
 
     showQuestion();
+    return true;
 }
+
+const gameTimer = window.createKhelearnGameTimer({
+    onStart: startGame,
+    getFinalScore: () =>
+        `${players[0]}: ${scores[0]} points • ${players[1]}: ${scores[1]} points`
+});
 
 // =======================================
 // DISPLAY QUESTION
@@ -494,7 +498,7 @@ function showQuestion() {
 
 function checkAnswer(button, selectedAnswer, correctAnswer) {
 
-    if (answered) return;
+    if (!gameTimer.isActive() || answered) return;
 
     answered = true;
 
@@ -545,7 +549,7 @@ function checkAnswer(button, selectedAnswer, correctAnswer) {
 
 nextButton.onclick = function () {
 
-    if (!answered) {
+    if (!gameTimer.isActive() || !answered) {
         return;
     }
 
@@ -584,6 +588,7 @@ nextButton.onclick = function () {
 
 function showResults() {
 
+    gameTimer.stop();
     gameScreen.classList.add("hidden");
     resultScreen.classList.remove("hidden");
 
@@ -622,23 +627,7 @@ function showResults() {
 // PLAY AGAIN
 // =======================================
 
-playAgainButton.addEventListener("click", () => {
-
-    resultScreen.classList.add("hidden");
-    gameScreen.classList.remove("hidden");
-
-    scores = [0, 0];
-    currentPlayer = 0;
-    currentRound = 0;
-
- // Create separate randomized questions for both players.
-let shuffledQuestions = [...questionBank[selectedGame]];
-
-shuffledQuestions.sort(() => Math.random() - 0.5);
-
-questions = shuffledQuestions;
-
-});
+playAgainButton.addEventListener("click", () => gameTimer.start());
 
 // =======================================
 // CHANGE GAME
@@ -650,6 +639,7 @@ newGameButton.addEventListener("click", returnToSetup);
 
 function returnToSetup() {
 
+    gameTimer.reset();
     gameScreen.classList.add("hidden");
     resultScreen.classList.add("hidden");
     setupScreen.classList.remove("hidden");

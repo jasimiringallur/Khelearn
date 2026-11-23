@@ -46,6 +46,7 @@ let streak = 0;
 let soundOn = true;
 let answered = false;
 let gameQuestions = [];
+let hasStarted = false;
 
 const focusStars = document.getElementById("focusStars");
 const focusScore = document.getElementById("focusScore");
@@ -96,7 +97,8 @@ function updateScoreboard() {
     }
 }
 
-function startGame() {
+function initializeFocusGame() {
+    hasStarted = true;
     questionIndex = 0;
     score = 0;
     stars = 0;
@@ -108,6 +110,7 @@ function startGame() {
     focusWin.hidden = true;
     document.querySelector(".focus-card").hidden = false;
     document.querySelector(".focus-scoreboard").hidden = false;
+    document.getElementById("restartFocus").hidden = false;
 
     updateScoreboard();
     showQuestion();
@@ -141,7 +144,7 @@ function showQuestion() {
 }
 
 function checkAnswer(button, selected, target) {
-    if (answered) return;
+    if (!gameTimer.isActive() || answered) return;
 
     if (selected === target) {
         answered = true;
@@ -176,6 +179,7 @@ function checkAnswer(button, selected, target) {
 }
 
 function finishGame() {
+    gameTimer.stop();
     document.querySelector(".focus-card").hidden = true;
     document.querySelector(".focus-scoreboard").hidden = true;
 
@@ -186,7 +190,7 @@ function finishGame() {
 }
 
 nextFocus.addEventListener("click", () => {
-    if (!answered) return;
+    if (!gameTimer.isActive() || !answered) return;
 
     questionIndex++;
 
@@ -203,9 +207,18 @@ document.querySelectorAll(".level-btn").forEach(button => {
         button.classList.add("active");
 
         level = button.dataset.level;
-        startGame();
+        if (hasStarted) startGame();
     });
 });
+
+const gameTimer = window.createKhelearnGameTimer({
+    onStart: initializeFocusGame,
+    getFinalScore: () => `Score: ${score} points • Stars: ${stars}`
+});
+
+function startGame() {
+    return gameTimer.start();
+}
 
 document.getElementById("restartFocus").addEventListener("click", startGame);
 
@@ -217,5 +230,3 @@ document.getElementById("focusSound").addEventListener("click", event => {
 });
 
 document.getElementById("playFocusAgain").addEventListener("click", startGame);
-
-startGame();

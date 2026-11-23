@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Memory Magic | Khelearn</title>
   <link rel="stylesheet" href="memory.css">
+  <link rel="stylesheet" href="game-timer.css">
 </head>
 <body>
 
@@ -38,8 +39,25 @@
       </div>
     </section>
 
-    
-<section class="score-board">
+    <section class="game-timer-setup" id="gameTimerSetup">
+      <label for="gameTimeLimit">Choose your game time</label>
+      <select id="gameTimeLimit">
+        <option value="60">1 minute</option>
+        <option value="120">2 minutes</option>
+        <option value="180">3 minutes</option>
+        <option value="300">5 minutes</option>
+        <option value="0">Unlimited time</option>
+      </select>
+      <button type="button" class="game-timer-start" id="gameTimerStart">Start Game</button>
+    </section>
+
+    <div class="game-timer-display" id="gameTimerDisplay" role="timer"
+      aria-label="Time remaining" aria-live="off" hidden>
+      <span aria-hidden="true">⏱️ Time left</span>
+      <strong id="gameTimerValue">00:00</strong>
+    </div>
+
+<section class="score-board" hidden>
 
   <div class="score-box">
     <span>⭐</span>
@@ -68,7 +86,7 @@
 </section>
 
 
-    <section class="board-section">
+    <section class="board-section" hidden>
        <div id="gameBoard" class="game-board"></div>
 
 <div class="game-controls">
@@ -103,6 +121,7 @@
 
   </main>
 
+  <script src="game-timer.js"></script>
   <script src="memory.js"></script>
 </body>
 </html>

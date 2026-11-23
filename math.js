@@ -61,6 +61,7 @@ let answered = false;
 
 let soundEnabled = true;
 let audioContext = null;
+let hasStarted = false;
 
 // SHUFFLE ANSWERS
 
@@ -334,7 +335,7 @@ function displayQuestion() {
 
 function checkMathAnswer(option, selectedButton) {
 
-  if (answered) return;
+  if (!gameTimer.isActive() || answered) return;
 
   answered = true;
 
@@ -396,7 +397,7 @@ function checkMathAnswer(option, selectedButton) {
 
 function goToNextQuestion() {
 
-  if (!answered) return;
+  if (!gameTimer.isActive() || !answered) return;
 
   questionIndex++;
 
@@ -408,6 +409,7 @@ function goToNextQuestion() {
 
 function finishMathGame() {
 
+  gameTimer.stop();
   questionCard.hidden = true;
 
   mathWin.hidden = false;
@@ -429,8 +431,8 @@ function finishMathGame() {
 
 // START GAME
 
-function startMathGame() {
-
+function initializeMathGame() {
+  hasStarted = true;
   score = 0;
   stars = 0;
   streak = 0;
@@ -441,11 +443,23 @@ function startMathGame() {
 
   mathWin.hidden = true;
   questionCard.hidden = false;
+  document.querySelector(".math-scoreboard").hidden = false;
+  document.querySelector(".math-controls").hidden = false;
+  restartMath.hidden = false;
 
   updateMathScore();
 
   displayQuestion();
 
+}
+
+const gameTimer = window.createKhelearnGameTimer({
+  onStart: initializeMathGame,
+  getFinalScore: () => `Score: ${score} points • Stars: ${stars}`
+});
+
+function startMathGame() {
+  return gameTimer.start();
 }
 
 // CATEGORY SELECTION
@@ -462,7 +476,7 @@ categoryButtons.forEach(button => {
 
     selectedCategory = button.dataset.category;
 
-    startMathGame();
+    if (hasStarted) startMathGame();
 
   });
 
@@ -495,6 +509,4 @@ mathSound.addEventListener("click", () => {
 
 playMathAgain.addEventListener("click", startMathGame);
 
-// START FIRST GAME
-
-startMathGame();
+updateMathScore();

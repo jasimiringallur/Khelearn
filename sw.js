@@ -1,10 +1,12 @@
-const CACHE_NAME = "khelearn-v1";
+const CACHE_NAME = "khelearn-v2";
 const BASE_URL = new URL("./", self.location.href);
 
 const FILES_TO_CACHE = [
   "index.html",
   "style.css",
   "script.js",
+  "game-timer.js",
+  "game-timer.css",
   "manifest.json",
   "homepage-kids.png",
   "game-focus.png",

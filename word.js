@@ -15,6 +15,7 @@ let category = "alphabet";
 let currentQuestion;
 let answered = false;
 let soundEnabled = true;
+let hasStarted = false;
 
 const wordQuestions = {
     easy: {
@@ -158,7 +159,7 @@ function loadWordQuestion() {
 }
 
 function checkWordAnswer(answer, selectedButton) {
-    if (answered) return;
+    if (!gameTimer.isActive() || answered) return;
 
     answered = true;
 
@@ -205,7 +206,7 @@ function checkWordAnswer(answer, selectedButton) {
 }
 
 function nextWordQuestion() {
-    if (!answered) return;
+    if (!gameTimer.isActive() || !answered) return;
 
     questionNumber++;
 
@@ -217,6 +218,7 @@ function nextWordQuestion() {
 }
 
 function showWordWin() {
+    gameTimer.stop();
     document.getElementById("wordWin").classList.remove("hidden");
     document.querySelector(".word-card").classList.add("hidden");
     document.querySelector(".word-levels").classList.add("hidden");
@@ -231,7 +233,8 @@ function showWordWin() {
     playWordSound(850);
 }
 
-function resetWordGame() {
+function initializeWordGame() {
+    hasStarted = true;
     score = 0;
     stars = 0;
     streak = 0;
@@ -241,9 +244,20 @@ function resetWordGame() {
     document.querySelector(".word-card").classList.remove("hidden");
     document.querySelector(".word-levels").classList.remove("hidden");
     document.querySelector(".word-categories").classList.remove("hidden");
+    document.querySelector(".word-scoreboard").hidden = false;
+    document.getElementById("restartWord").hidden = false;
 
     updateWordScore();
     loadWordQuestion();
+}
+
+const gameTimer = window.createKhelearnGameTimer({
+    onStart: initializeWordGame,
+    getFinalScore: () => `Score: ${score} points • Stars: ${stars}`
+});
+
+function startWordGame() {
+    return gameTimer.start();
 }
 
 document.querySelectorAll(".level-btn").forEach(button => {
@@ -255,7 +269,7 @@ document.querySelectorAll(".level-btn").forEach(button => {
         button.classList.add("active");
         level = button.dataset.level;
 
-        resetWordGame();
+        if (hasStarted) startWordGame();
     });
 });
 
@@ -268,13 +282,13 @@ document.querySelectorAll(".category-btn").forEach(button => {
         button.classList.add("active");
         category = button.dataset.category;
 
-        resetWordGame();
+        if (hasStarted) startWordGame();
     });
 });
 
 document.getElementById("nextWord").addEventListener("click", nextWordQuestion);
 
-document.getElementById("restartWord").addEventListener("click", resetWordGame);
+document.getElementById("restartWord").addEventListener("click", startWordGame);
 
 document.getElementById("wordSound").addEventListener("click", () => {
     soundEnabled = !soundEnabled;
@@ -285,7 +299,6 @@ document.getElementById("wordSound").addEventListener("click", () => {
     if (soundEnabled) playWordSound();
 });
 
-document.getElementById("playWordAgain").addEventListener("click", resetWordGame);
+document.getElementById("playWordAgain").addEventListener("click", startWordGame);
 
 updateWordScore();
-loadWordQuestion();

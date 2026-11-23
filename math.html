@@ -8,6 +8,7 @@
   <title>Math Adventure | Khelearn</title>
 
   <link rel="stylesheet" href="math.css">
+  <link rel="stylesheet" href="game-timer.css">
 </head>
 
 <body>
@@ -77,9 +78,26 @@
 
     </section>
 
+    <section class="game-timer-setup" id="gameTimerSetup">
+      <label for="gameTimeLimit">Choose your game time</label>
+      <select id="gameTimeLimit">
+        <option value="60">1 minute</option>
+        <option value="120">2 minutes</option>
+        <option value="180">3 minutes</option>
+        <option value="300">5 minutes</option>
+        <option value="0">Unlimited time</option>
+      </select>
+      <button type="button" class="game-timer-start" id="gameTimerStart">Start Game</button>
+    </section>
+
+    <div class="game-timer-display" id="gameTimerDisplay" role="timer"
+      aria-label="Time remaining" aria-live="off" hidden>
+      <span aria-hidden="true">⏱️ Time left</span>
+      <strong id="gameTimerValue">00:00</strong>
+    </div>
 
     <!-- SCORE BOARD -->
-    <section class="math-scoreboard">
+    <section class="math-scoreboard" hidden>
 
       <div class="math-score-box">
         <span>⭐</span>
@@ -103,7 +121,7 @@
 
 
     <!-- QUESTION AREA -->
-    <section class="question-card">
+    <section class="question-card" hidden>
 
       <div class="question-top">
         <span>🧠 Brain Challenge</span>
@@ -145,7 +163,7 @@
     <!-- GAME CONTROLS -->
     <section class="math-controls">
 
-      <button id="restartMath" class="restart-math">
+      <button id="restartMath" class="restart-math" hidden>
         🔄 Restart Game
       </button>
 
@@ -175,6 +193,7 @@
 
 
   <!-- JAVASCRIPT -->
+  <script src="game-timer.js"></script>
   <script src="math.js"></script>
 
 </body>

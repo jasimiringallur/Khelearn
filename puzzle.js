@@ -12,6 +12,7 @@ let bestScore = Number(localStorage.getItem("puzzleBest") || 0);
 let currentQuestion = null;
 let answered = false;
 let soundEnabled = true;
+let hasStarted = false;
 
 let level = "easy";
 let category = "colors";
@@ -151,7 +152,7 @@ function loadQuestion() {
 }
 
 function checkAnswer(answer, selectedButton) {
-    if (answered) return;
+    if (!gameTimer.isActive() || answered) return;
 
     answered = true;
 
@@ -198,7 +199,7 @@ function checkAnswer(answer, selectedButton) {
 }
 
 function nextQuestion() {
-    if (!answered) return;
+    if (!gameTimer.isActive() || !answered) return;
 
     questionNumber++;
 
@@ -210,7 +211,10 @@ function nextQuestion() {
 }
 
 function showWinScreen() {
-    document.getElementById("puzzleWin").classList.remove("hidden");
+    gameTimer.stop();
+    const puzzleWin = document.getElementById("puzzleWin");
+    puzzleWin.hidden = false;
+    puzzleWin.classList.remove("hidden");
     document.querySelector(".puzzle-card").classList.add("hidden");
     document.querySelector(".puzzle-levels").classList.add("hidden");
     document.querySelector(".puzzle-categories").classList.add("hidden");
@@ -224,19 +228,33 @@ function showWinScreen() {
     playSound(850);
 }
 
-function resetGame() {
+function initializePuzzleGame() {
+    hasStarted = true;
     score = 0;
     stars = 0;
     streak = 0;
     questionNumber = 0;
 
-    document.getElementById("puzzleWin").classList.add("hidden");
+    const puzzleWin = document.getElementById("puzzleWin");
+    puzzleWin.hidden = true;
+    puzzleWin.classList.add("hidden");
     document.querySelector(".puzzle-card").classList.remove("hidden");
     document.querySelector(".puzzle-levels").classList.remove("hidden");
     document.querySelector(".puzzle-categories").classList.remove("hidden");
+    document.querySelector(".puzzle-scoreboard").hidden = false;
+    document.getElementById("restartPuzzle").hidden = false;
 
     updateScoreboard();
     loadQuestion();
+}
+
+const gameTimer = window.createKhelearnGameTimer({
+    onStart: initializePuzzleGame,
+    getFinalScore: () => `Score: ${score} points • Stars: ${stars}`
+});
+
+function startPuzzleGame() {
+    return gameTimer.start();
 }
 
 document.querySelectorAll(".level-btn").forEach(button => {
@@ -248,7 +266,7 @@ document.querySelectorAll(".level-btn").forEach(button => {
         button.classList.add("active");
         level = button.dataset.level;
 
-        resetGame();
+        if (hasStarted) startPuzzleGame();
     });
 });
 
@@ -261,13 +279,13 @@ document.querySelectorAll(".category-btn").forEach(button => {
         button.classList.add("active");
         category = button.dataset.category;
 
-        resetGame();
+        if (hasStarted) startPuzzleGame();
     });
 });
 
 document.getElementById("nextPuzzle").addEventListener("click", nextQuestion);
 
-document.getElementById("restartPuzzle").addEventListener("click", resetGame);
+document.getElementById("restartPuzzle").addEventListener("click", startPuzzleGame);
 
 document.getElementById("puzzleSound").addEventListener("click", () => {
     soundEnabled = !soundEnabled;
@@ -278,7 +296,6 @@ document.getElementById("puzzleSound").addEventListener("click", () => {
     if (soundEnabled) playSound();
 });
 
-document.getElementById("playPuzzleAgain").addEventListener("click", resetGame);
+document.getElementById("playPuzzleAgain").addEventListener("click", startPuzzleGame);
 
 updateScoreboard();
-loadQuestion();
