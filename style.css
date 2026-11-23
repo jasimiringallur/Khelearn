@@ -749,6 +749,7 @@ a {
   border-radius: 24px;
   text-align: center;
   color: var(--ink);
+  cursor: pointer;
   transition: 0.25s;
 }
 
@@ -759,6 +760,11 @@ a {
 .mode-card.selected {
   border-color: var(--purple);
   background: #faf8ff;
+}
+
+.mode-card:focus-visible {
+  outline: 3px solid var(--purple);
+  outline-offset: 4px;
 }
 
 .mode-icon {

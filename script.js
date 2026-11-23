@@ -31,10 +31,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const playAlone = document.getElementById("playAlone");
     const playTogether = document.getElementById("playTogether");
     const closePopup = document.getElementById("closePlayMode");
+    const modeCards = document.querySelectorAll(".mode-card");
+    const selectionMessage = document.getElementById("selectionMessage");
+    const startButton = document.getElementById("startButton");
     const textbookComingSoon = document.getElementById("textbookComingSoon");
     const closeTextbookComingSoon = document.getElementById("closeTextbookComingSoon");
 
     let selectedGame = null;
+    let selectedMode = "Individual";
+    let modeChosen = false;
 
     console.log("Game cards found:", gameCards.length);
 
@@ -67,7 +72,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.log("Selected game:", selectedGame);
 
                 if (gamePages[selectedGame]) {
-                    popup.hidden = false;
+                    if (modeChosen) {
+                        if (selectedMode === "Competition") {
+                            sessionStorage.setItem("selectedTogetherGame", selectedGame);
+                            window.location.href = "together.html";
+                        } else {
+                            window.location.href = gamePages[selectedGame];
+                        }
+                    } else {
+                        popup.hidden = false;
+                    }
                 } else {
                     console.error("Game page not found:", selectedGame);
                 }
@@ -114,6 +128,44 @@ document.addEventListener("DOMContentLoaded", function () {
 
         });
 
+    }
+
+    if (modeCards.length && selectionMessage && startButton) {
+        modeCards.forEach(function (card) {
+            card.addEventListener("click", function () {
+                selectedMode = card.dataset.mode;
+                modeChosen = true;
+
+                modeCards.forEach(function (item) {
+                    const isSelected = item === card;
+                    item.classList.toggle("selected", isSelected);
+                    item.setAttribute("aria-pressed", String(isSelected));
+                    item.querySelector(".mode-status").textContent =
+                        isSelected ? "Selected ✓" : "Choose mode";
+                });
+
+                const playTogetherMode = selectedMode === "Competition";
+                selectionMessage.textContent = playTogetherMode
+                    ? "Ready to play side by side?"
+                    : "Ready for your individual adventure?";
+
+                startButton.innerHTML = playTogetherMode
+                    ? "Choose players and a game <span>→</span>"
+                    : "Choose an adventure <span>→</span>";
+            });
+        });
+
+        startButton.addEventListener("click", function () {
+            if (selectedMode === "Competition") {
+                window.location.href = "together.html";
+                return;
+            }
+
+            document.getElementById("games").scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        });
     }
 
     // =====================================
